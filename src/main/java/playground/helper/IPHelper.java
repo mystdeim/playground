@@ -42,18 +42,22 @@ public class IPHelper {
 	/**
 	 * "IP/mask" -> List
 	 * 
+	 * @deprecated
 	 * @param str "192.168.0.0/16"
 	 * @return
 	 * @throws UnknownHostException
 	 */
-	public static List<Integer> getRange(String str) throws UnknownHostException {
+	public static List<Integer> getRangeList(String str) throws UnknownHostException {
+		int[] range = getRange(str);
+		return IntStream.rangeClosed(range[0], range[1]).boxed().collect(Collectors.toList());
+	}
+	
+	public static int[] getRange(String str) throws UnknownHostException {
 		String strs[] = str.split("\\/");
 		int address = toInt(InetAddress.getByName(strs[0]));
 		byte mask = Byte.parseByte(strs[1]);
 		int start = address >> mask << mask;
 		int finish = start | ((1 << mask) - 1);
-		return IntStream.rangeClosed(start, finish).boxed().collect(Collectors.toList());
+		return new int[] {start, finish};
 	}
-	
-	
 }

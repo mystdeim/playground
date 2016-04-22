@@ -24,7 +24,7 @@ public class NetworkExamples {
 //			System.out.println(Arrays.toString(InetAddress.getAllByName("192.168.0.0/16")));
 			System.out.println("----- range!");
 			String str = "10.0.0.7/3";
-			List<Integer> list = IPHelper.getRange(str);
+			List<Integer> list = IPHelper.getRangeList(str);
 			for (Integer a : list) {
 				System.out.println(IPHelper.fromInt(a));
 			}
