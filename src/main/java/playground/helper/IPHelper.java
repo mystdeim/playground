@@ -1,5 +1,6 @@
 package playground.helper;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.List;
@@ -23,6 +24,10 @@ public class IPHelper {
 		return result;
 	}
 	
+	public static int toInt(String str) throws UnknownHostException {
+		return toInt(InetAddress.getByName(str));
+	}
+	
 	/**
 	 * int -> InetAddress
 	 * 
@@ -34,6 +39,25 @@ public class IPHelper {
 		byte[] result = new byte[4];
 		for (int i = 0; i < 4; i++) result[i] = (byte) (n >> (3-i)*8 & 0xFF);
 		return InetAddress.getByAddress(result);
+	}
+	
+	//
+	// -----------------------------------------------------------------------------------------------------------------
+	
+	/**
+	 * Not a real ping, send echo on TCP 7 port
+	 * 
+	 * @param ip
+	 * @param timeout
+	 * @return
+	 */
+	public static boolean ping(int ip, int timeout) {
+		try {
+			if (IPHelper.fromInt(ip).isReachable(timeout)) return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 	// Range
@@ -52,12 +76,31 @@ public class IPHelper {
 		return IntStream.rangeClosed(range[0], range[1]).boxed().collect(Collectors.toList());
 	}
 	
-	public static int[] getRange(String str) throws UnknownHostException {
-		String strs[] = str.split("\\/");
-		int address = toInt(InetAddress.getByName(strs[0]));
-		byte mask = Byte.parseByte(strs[1]);
-		int start = address >> mask << mask;
-		int finish = start | ((1 << mask) - 1);
-		return new int[] {start, finish};
+	public static int[] getRange(String str) {
+		
+		if (null == str) throw new IllegalArgumentException("Shouldn't be null");
+		
+		try {
+			if (str.contains("/")) {
+				String strs[] = str.split("\\/");
+				int address = toInt(InetAddress.getByName(strs[0]));
+				byte mask = Byte.parseByte(strs[1]);
+				int start = address >> mask << mask;
+		
+				// If mask = 32 force set -1 due to overflow int type
+				int finish = mask > 31 ? -1 : start | ((1 << mask) - 1);
+				return new int[] {start, finish};			
+			} else if (str.contains("-")) {
+				String strs[] = str.split("-");
+				int start = toInt(InetAddress.getByName(strs[0]));
+				int finish = toInt(InetAddress.getByName(strs[1]));
+				return new int[] {start, finish};
+			} else {
+				int start = toInt(InetAddress.getByName(str));
+				return new int[] {start, start};
+			} 
+		} catch (UnknownHostException e) {
+			throw new IllegalArgumentException(e.getMessage());
+		}
 	}
 }
