@@ -61,12 +61,13 @@ public class NetworkExamples {
 					}
 				}
 			});
-			ns.setSubnet("10.1.1.36-10.1.1.38");
+//			ns.setSubnet("10.1.1.0-10.1.1.38");
+			ns.setSubnet("10.0.0.0/8");
 //			ns.setSubnet("192.168.0.0/2");
 			
 //			ns.setSubnet("127.255.255.255-128.0.0.1");
 			
-			ns.run();
+			ns.runParallel();
 			
 //			System.out.println(IPHelper.fromInt(-1_000_000));
 //			System.out.println(IPHelper.fromInt(-2));
@@ -74,6 +75,19 @@ public class NetworkExamples {
 //			System.out.println(IPHelper.fromInt(1));
 //			System.out.println(IPHelper.fromInt(Integer.MAX_VALUE));
 //			System.out.println(IPHelper.fromInt(-Integer.MAX_VALUE));
+			
+//			System.out.println(IPHelper.ping(IPHelper.toInt("10.1.1.12")));
+//			System.out.println(IPHelper.isReachable(IPHelper.toInt("10.1.1.12"), 1000));
+//			System.out.println(InetAddress.getByName("google.com").isReachable(1000));
+//			
+//			InetAddress[] addrs = InetAddress.getAllByName("google.com");
+//			for (InetAddress a : addrs) {
+//				if (a.isReachable(10_000)) {
+//					System.out.printf("Ok: %s \n", a);
+//				} else {
+//					System.out.printf("No: %s \n", a);
+//				}
+//			}
 			
 			
 		} catch (Exception e) {

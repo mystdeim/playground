@@ -5,18 +5,24 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.RecursiveAction;
+import java.util.concurrent.RecursiveTask;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
 
 import playground.helper.IPHelper;
 
 public class NetworkScanner {
 
 	public static final int DEFAULT_TIMEOUT = 1_000;
+	public static final int DEFAULT_MAX_THREADS = 64;
 	
 	// Construct
 	// -----------------------------------------------------------------------------------------------------------------
 	
 	public NetworkScanner() {
-		
+		pool = new ForkJoinPool(max_threads);
 	}
 	
 	// Getters & setters
@@ -41,6 +47,10 @@ public class NetworkScanner {
 		this.timeout = timeout;
 	}
 	
+	public int getMaxThreads() {
+		return max_threads;
+	}
+	
 	// API
 	// -----------------------------------------------------------------------------------------------------------------
 	
@@ -62,15 +72,30 @@ public class NetworkScanner {
 		}
 	}
 	
+	public void runParallel() {
+		for (int ip = start; Integer.compareUnsigned(ip, finish) < 1; ip++) {
+//			firePing(ip);
+//			if (ping(ip)) firePong(ip);
+			Task task = new Task(ip);
+//			pool.invoke(task);
+			pool.submit(task);
+		}
+		pool.awaitQuiescence(1, TimeUnit.SECONDS);
+//		Stream stream = Stream.of(1, 2);
+//		pool.invoke(stream);
+	}
+	
 	private int start;
 	private int finish;
 	private int timeout = DEFAULT_TIMEOUT;
+	private int max_threads = DEFAULT_MAX_THREADS;
+	private ForkJoinPool pool;
 	
 	// Working with IP
 	// -----------------------------------------------------------------------------------------------------------------
 	
 	protected boolean ping(int ip) {
-		return IPHelper.ping(ip, getTimeout());
+		return IPHelper.isReachable(ip, getTimeout());
 	}
 	
 	// Listeners
@@ -102,5 +127,26 @@ public class NetworkScanner {
 		void ping(int ip);
 		void pong(int ip);
 	}
+	
+	// Tasks
+	//------------------------------------------------------------------------------------------------------------------
+	
+	private class Task extends RecursiveAction {
+		
+		private final int ip;
+		
+		public Task(int ip) {
+			this.ip = ip;
+		}
+
+		@Override
+		protected void compute() {
+			firePing(ip);
+			if (ping(ip)) firePong(ip);
+		}
+
+		
+	}
+	
 	
 }

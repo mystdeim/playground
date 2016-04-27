@@ -28,6 +28,11 @@ public class IPHelper {
 		return toInt(InetAddress.getByName(str));
 	}
 	
+	public static String toString(int ip) {
+		byte[] b = toByteArray(ip);
+		return String.format("%d.%d.%d.%d", b[0], b[1], b[2], b[3]);
+	}
+	
 	/**
 	 * int -> InetAddress
 	 * 
@@ -36,9 +41,13 @@ public class IPHelper {
 	 * @throws UnknownHostException
 	 */
 	public static InetAddress fromInt(int n) throws UnknownHostException {
+		return InetAddress.getByAddress(toByteArray(n));
+	}
+	
+	public static byte[] toByteArray(int n) {
 		byte[] result = new byte[4];
 		for (int i = 0; i < 4; i++) result[i] = (byte) (n >> (3-i)*8 & 0xFF);
-		return InetAddress.getByAddress(result);
+		return result;
 	}
 	
 	//
@@ -51,13 +60,21 @@ public class IPHelper {
 	 * @param timeout
 	 * @return
 	 */
-	public static boolean ping(int ip, int timeout) {
+	public static boolean isReachable(int ip, int timeout) {
 		try {
 			if (IPHelper.fromInt(ip).isReachable(timeout)) return true;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	
+	public static int ping(int ip) throws IOException, InterruptedException {
+		boolean isWindows = System.getProperty("os.name").toLowerCase().contains("win");
+		ProcessBuilder pb = new ProcessBuilder("ping", isWindows ? "-n" : "-c", "1", toString(ip));
+		Process proc = pb.start();
+		int value = proc.waitFor();
+		return value;
 	}
 	
 	// Range
