@@ -67,7 +67,7 @@ public class Controller implements Initializable {
 				protected void updateItem(Number item, boolean empty) {
 					super.updateItem(item, empty);
 					if (empty) this.setText("");
-					else this.setText(IPHelper.toString(item.intValue()));
+					else this.setText(IPHelper.toString(item.intValue()) + " " + item.intValue());
 				};
 			};
 		});

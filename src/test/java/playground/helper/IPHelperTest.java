@@ -29,6 +29,14 @@ public class IPHelperTest {
 	}
 	
 	@Test
+	public void toStringTest() throws UnknownHostException {
+		assertEquals("0.0.0.0", IPHelper.toString(0));
+		assertEquals("10.0.0.0", IPHelper.toString(167772160));
+		assertEquals("10.0.0.255", IPHelper.toString(167772415));
+		assertEquals("192.168.0.0", IPHelper.toString((int)(3232235520L)));
+	}
+	
+	@Test
 	public void rangeTest() throws UnknownHostException {
 		assertArrayEquals(
 				IPHelper.getRange("10.0.0.1"), 

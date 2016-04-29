@@ -16,7 +16,7 @@ import playground.helper.IPHelper;
 public class NetworkScanner {
 
 	public static final int DEFAULT_TIMEOUT = 1_000;
-	public static final int DEFAULT_MAX_THREADS = 1;
+	public static final int DEFAULT_MAX_THREADS = 1000;
 	
 	// Construct
 	// -----------------------------------------------------------------------------------------------------------------

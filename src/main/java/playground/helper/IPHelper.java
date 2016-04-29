@@ -30,7 +30,7 @@ public class IPHelper {
 	
 	public static String toString(int ip) {
 		byte[] b = toByteArray(ip);
-		return String.format("%d.%d.%d.%d", b[0], b[1], b[2], b[3]);
+		return String.format("%d.%d.%d.%d",	0xff & b[0], 0xff & b[1], 0xff & b[2], 0xff & b[3]);
 	}
 	
 	/**

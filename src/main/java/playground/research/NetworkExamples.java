@@ -67,10 +67,13 @@ public class NetworkExamples {
 			
 //			ns.setSubnet("127.255.255.255-128.0.0.1");
 			
-			ns.runParallel();
+//			ns.runParallel();
 			
-//			System.out.println(IPHelper.fromInt(-1_000_000));
-//			System.out.println(IPHelper.fromInt(-2));
+			System.out.println(IPHelper.fromInt(167772415));
+			System.out.println(IPHelper.toString(167772415));
+			System.out.println(IPHelper.toString(167772410));
+			byte b = -10;
+			System.out.println(0xff & b);
 //			System.out.println(IPHelper.fromInt(0));
 //			System.out.println(IPHelper.fromInt(1));
 //			System.out.println(IPHelper.fromInt(Integer.MAX_VALUE));
