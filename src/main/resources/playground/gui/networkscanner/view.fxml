@@ -3,20 +3,21 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="10.0" minWidth="10.0" prefHeight="258.0" prefWidth="355.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="playground.gui.networkscanner.Controller">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="600.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Network:" />
             <TextField fx:id="fieldNetwork" HBox.hgrow="ALWAYS" />
-            <Button mnemonicParsing="false" text="Start" />
+            <Button fx:id="btnStart" mnemonicParsing="false" onAction="#onStart" text="Start" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -24,11 +25,27 @@
       </HBox>
    </top>
    <center>
-      <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableNetwork" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="columnIP" prefWidth="75.0" text="IP" />
+          <TableColumn fx:id="columnIsReachable" prefWidth="75.0" text="Status" />
         </columns>
       </TableView>
    </center>
+   <bottom>
+      <HBox prefHeight="20.0" spacing="5.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="lblSummary" />
+            <AnchorPane HBox.hgrow="ALWAYS">
+               <children>
+                  <ProgressBar fx:id="progressBarStatus" progress="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <Label fx:id="lblStatus" text="Ready" />
+         </children>
+         <padding>
+            <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+         </padding>
+      </HBox>
+   </bottom>
 </BorderPane>

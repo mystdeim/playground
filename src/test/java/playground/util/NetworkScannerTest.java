@@ -24,7 +24,7 @@ public class NetworkScannerTest {
 			@Override
 			public void ping(int ip) {ping_list.add(ip);}
 			@Override
-			public void pong(int ip) {pong_list.add(ip);}
+			public void pong(int ip, boolean isReachable) {pong_list.add(ip);}
 		});
 		
 		ns.setSubnet("10.0.0.0");

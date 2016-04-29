@@ -22,6 +22,7 @@ public class NetworkscannerMain extends Application {
 	        
 //	        final Scene scene = new Scene(root, 500, 500);
 	        final Scene scene = new Scene(root);
+	        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 //	        scene.getStylesheets().addAll(Main.class.getResource("application.css").toExternalForm());
 //	        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 //	            @Override

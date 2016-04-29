@@ -52,17 +52,17 @@ public class NetworkExamples {
 				}
 
 				@Override
-				public void pong(int ip) {
+				public void pong(int ip, boolean isReachable) {
 					try {
 						InetAddress ia = IPHelper.fromInt(ip);
-						System.out.printf("OK %s (%d) \n", ia, ip);
+						System.out.printf("%s (%d) %b \n", ia, ip, isReachable);
 					} catch (UnknownHostException e) {
 						e.printStackTrace();
 					}
 				}
 			});
-//			ns.setSubnet("10.1.1.0-10.1.1.38");
-			ns.setSubnet("10.0.0.0/8");
+			ns.setSubnet("10.1.1.35-10.1.1.38");
+//			ns.setSubnet("10.0.0.0/8");
 //			ns.setSubnet("192.168.0.0/2");
 			
 //			ns.setSubnet("127.255.255.255-128.0.0.1");

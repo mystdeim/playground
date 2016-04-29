@@ -16,7 +16,7 @@ import playground.helper.IPHelper;
 public class NetworkScanner {
 
 	public static final int DEFAULT_TIMEOUT = 1_000;
-	public static final int DEFAULT_MAX_THREADS = 64;
+	public static final int DEFAULT_MAX_THREADS = 1;
 	
 	// Construct
 	// -----------------------------------------------------------------------------------------------------------------
@@ -51,6 +51,10 @@ public class NetworkScanner {
 		return max_threads;
 	}
 	
+	public long getRangeSize() {
+		return Integer.toUnsignedLong(finish) - Integer.toUnsignedLong(start);
+	}
+	
 	// API
 	// -----------------------------------------------------------------------------------------------------------------
 	
@@ -68,7 +72,7 @@ public class NetworkScanner {
 		
 		for (int ip = start; Integer.compareUnsigned(ip, finish) < 1; ip++) {
 			firePing(ip);
-			if (ping(ip)) firePong(ip);
+			firePong(ip, ping(ip));
 		}
 	}
 	
@@ -84,6 +88,9 @@ public class NetworkScanner {
 //		Stream stream = Stream.of(1, 2);
 //		pool.invoke(stream);
 	}
+	
+	// Properties
+	// -----------------------------------------------------------------------------------------------------------------
 	
 	private int start;
 	private int finish;
@@ -116,8 +123,8 @@ public class NetworkScanner {
 		listeners.forEach(l -> l.ping(ip));
 	}
 	
-	private void firePong(int ip) {
-		listeners.forEach(l -> l.pong(ip));
+	private void firePong(int ip, boolean isReachable) {
+		listeners.forEach(l -> l.pong(ip, isReachable));
 	}
 	
 	// Interfaces
@@ -125,7 +132,7 @@ public class NetworkScanner {
 	
 	public static interface Listener {
 		void ping(int ip);
-		void pong(int ip);
+		void pong(int ip, boolean isReachable);
 	}
 	
 	// Tasks
@@ -142,7 +149,7 @@ public class NetworkScanner {
 		@Override
 		protected void compute() {
 			firePing(ip);
-			if (ping(ip)) firePong(ip);
+			firePong(ip, ping(ip));
 		}
 
 		
