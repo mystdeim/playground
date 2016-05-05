@@ -43,7 +43,7 @@ public class IPHelperTest {
 				new int[] {IPHelper.toInt("10.0.0.1"), IPHelper.toInt("10.0.0.1")});
 		
 		assertArrayEquals(
-				IPHelper.getRange("10.0.0.1-10.0.0.1"), 
+				IPHelper.getRange("10.0.0.1-10.0.0.1"),
 				new int[] {IPHelper.toInt("10.0.0.1"), IPHelper.toInt("10.0.0.1")});
 		assertArrayEquals(
 				IPHelper.getRange("10.0.0.1-10.0.0.5"), 
@@ -54,19 +54,15 @@ public class IPHelperTest {
 		
 		assertArrayEquals(
 				IPHelper.getRange("10.0.0.0/0"), 
-				new int[] {IPHelper.toInt("10.0.0.0"), IPHelper.toInt("10.0.0.0")});
+				new int[] {IPHelper.toInt("0.0.0.0"), IPHelper.toInt("255.255.255.255")});
 		assertArrayEquals(
 				IPHelper.getRange("10.0.0.0/1"), 
-				new int[] {IPHelper.toInt("10.0.0.0"), IPHelper.toInt("10.0.0.1")});
+				new int[] {IPHelper.toInt("0.0.0.0"), IPHelper.toInt("127.255.255.255")});
 		assertArrayEquals(
 				IPHelper.getRange("10.0.0.0/24"), 
-				new int[] {IPHelper.toInt("10.0.0.0"), IPHelper.toInt("10.255.255.255")});
-		assertArrayEquals(
-				IPHelper.getRange("0.0.0.0/31"), 
-				new int[] {IPHelper.toInt("0.0.0.0"), Integer.MAX_VALUE});
+				new int[] {IPHelper.toInt("10.0.0.0"), IPHelper.toInt("10.0.0.255")});
 		assertArrayEquals(
 				IPHelper.getRange("0.0.0.0/32"), 
-				new int[] {IPHelper.toInt("0.0.0.0"), -1});
-	}
-	
+				new int[] {IPHelper.toInt("0.0.0.0"), IPHelper.toInt("0.0.0.0")});
+	}	
 }

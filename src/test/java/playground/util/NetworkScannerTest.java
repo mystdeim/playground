@@ -2,8 +2,6 @@ package playground.util;
 
 import static org.junit.Assert.*;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +36,17 @@ public class NetworkScannerTest {
 		ns.run();
 		assertEquals(ping_list.size(), 256);
 		assertEquals(pong_list.size(), 256);
+	}
+	
+	@Test
+	public void getRangeSizeTest() {
+		NetworkScanner ns = new NetworkScannerMock();
+		
+		ns.setSubnet("10.0.0.0-10.0.0.0");
+		assertEquals(1, ns.getRangeSize());
+		
+		ns.setSubnet("10.0.0.0-10.0.0.10");
+		assertEquals(11, ns.getRangeSize());
 	}
 	
 }

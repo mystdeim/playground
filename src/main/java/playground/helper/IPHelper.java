@@ -101,12 +101,14 @@ public class IPHelper {
 			if (str.contains("/")) {
 				String strs[] = str.split("\\/");
 				int address = toInt(InetAddress.getByName(strs[0]));
-				byte mask = Byte.parseByte(strs[1]);
-				int start = address >> mask << mask;
-		
-				// If mask = 32 force set -1 due to overflow int type
-				int finish = mask > 31 ? -1 : start | ((1 << mask) - 1);
-				return new int[] {start, finish};			
+				byte reverse_mask = (byte) (32 - Byte.parseByte(strs[1]));
+				if (32 == reverse_mask) return new int[] {0, -1};
+				else {
+					int start = address >> reverse_mask << reverse_mask;
+					int finish = start | ((1 << reverse_mask) - 1);
+					return new int[] {start, finish};			
+				}
+				
 			} else if (str.contains("-")) {
 				String strs[] = str.split("-");
 				int start = toInt(InetAddress.getByName(strs[0]));

@@ -1,17 +1,15 @@
 package playground.gui.networkscanner;
 
-import java.math.BigDecimal;
 import java.net.URL;
-import java.util.Comparator;
 import java.util.ResourceBundle;
-import java.util.concurrent.atomic.LongAccumulator;
 import java.util.concurrent.atomic.LongAdder;
 
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
-import javafx.util.Callback;
+import playground.gui.util.UserSettings;
+import playground.gui.util.UserSettingsSavable;
 import playground.helper.IPHelper;
 import playground.util.NetworkScanner;
 import playground.util.NetworkScanner.Listener;
@@ -23,8 +21,6 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,7 +28,16 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Label;
 
-public class Controller implements Initializable {
+public class Controller implements Initializable, UserSettingsSavable {
+	
+	// UserSettings
+	// -----------------------------------------------------------------------------------------------------------------
+	
+	public static final String USER_SETTINGS_NETWORK = "network";
+	
+	public static final String TEXT_READY = "Ready";
+	public static final String TEXT_START = "Start";
+	public static final String TEXT_STOP = "Stop";
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -53,11 +58,18 @@ public class Controller implements Initializable {
 				Platform.runLater(() -> {
 					data.add(row);
 					lblSummary.setText(accumulator.toString());
-					progressBarStatus.setProgress(accumulator.doubleValue() / (double) count);
+					double progress = accumulator.doubleValue() / (double) count;
+					progressBarStatus.setProgress(progress);
+					if (progress < 1) {
+						lblStatus.setText(String.format("%.1f%%",  progress * 100));
+					} else {
+						lblStatus.setText(TEXT_READY);
+					}
 				});
 			}
 		});
-		fieldNetwork.setText("10.1.1.35-10.1.1.38");
+//		fieldNetwork.setText("10.1.1.35-10.1.1.38");
+//		fieldNetwork.setText(UserSettings.);
 		
 		tableNetwork.setItems(data);
 		columnIP.setCellValueFactory(c -> c.getValue().ip);
@@ -100,6 +112,8 @@ public class Controller implements Initializable {
 		progressBarStatus.visibleProperty().bind(
 				progressBarStatus.progressProperty().lessThan(1)
 		);
+		
+		loadSettings();
 	}
 	
 	// Properties
@@ -128,13 +142,31 @@ public class Controller implements Initializable {
 			Platform.runLater(() -> {
 				data.clear();
 				lblSummary.setText("");
+				btnStart.setText(TEXT_STOP);
 			});
 			scanner.setSubnet(fieldNetwork.getText().trim());
 			count = scanner.getRangeSize();
 			accumulator.reset();
 			scanner.runParallel();
+			Platform.runLater(() -> {
+				btnStart.setText(TEXT_START);
+			});
 		};
 		new Thread(r).start();
+	}
+	
+	// Settings
+	// -----------------------------------------------------------------------------------------------------------------
+	
+	private void loadSettings() {
+		UserSettings settings = getUserSettings();
+		fieldNetwork.setText(settings.get(USER_SETTINGS_NETWORK));
+	}
+	
+	@Override
+	public void saveSettings() {
+		UserSettings settings = getUserSettings();
+		settings.put(USER_SETTINGS_NETWORK, fieldNetwork.getText().trim());
 	}
 	
 	// Row

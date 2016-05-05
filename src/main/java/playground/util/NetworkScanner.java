@@ -16,7 +16,7 @@ import playground.helper.IPHelper;
 public class NetworkScanner {
 
 	public static final int DEFAULT_TIMEOUT = 1_000;
-	public static final int DEFAULT_MAX_THREADS = 1000;
+	public static final int DEFAULT_MAX_THREADS = 1;
 	
 	// Construct
 	// -----------------------------------------------------------------------------------------------------------------
@@ -52,7 +52,7 @@ public class NetworkScanner {
 	}
 	
 	public long getRangeSize() {
-		return Integer.toUnsignedLong(finish) - Integer.toUnsignedLong(start);
+		return Integer.toUnsignedLong(finish) - Integer.toUnsignedLong(start) + 1;
 	}
 	
 	// API

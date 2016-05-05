@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import playground.gui.util.UserSettingsSavable;
 
 public class NetworkscannerMain extends Application {
 	
@@ -18,7 +19,7 @@ public class NetworkscannerMain extends Application {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("view.fxml"));
 	        final Parent root = loader.load();
-//	        final Application controller = loader.getController();
+	        final Controller controller = loader.getController();
 	        
 //	        final Scene scene = new Scene(root, 500, 500);
 	        final Scene scene = new Scene(root);
@@ -39,6 +40,9 @@ public class NetworkscannerMain extends Application {
 	        
 	        stage.setScene(scene);
 	        stage.setTitle("v0.1");
+	        stage.setOnCloseRequest(e -> {
+	        	controller.saveSettings();
+	        });
 	//        stage.getIcons().add(new Image(Main.class.getResourceAsStream("icon.png"))); 
 	        stage.show();
 	        
