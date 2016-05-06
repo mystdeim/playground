@@ -11,7 +11,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="10.0" minWidth="10.0" prefHeight="258.0" prefWidth="355.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="playground.gui.networkscanner.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="10.0" minWidth="10.0" 
+prefHeight="258.0" prefWidth="355.0" xmlns="http://javafx.com/javafx/8.0.65" 
+xmlns:fx="http://javafx.com/fxml/1" fx:controller="playground.gui.networkscanner.Controller">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="600.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
