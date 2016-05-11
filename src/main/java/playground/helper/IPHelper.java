@@ -3,6 +3,7 @@ package playground.helper;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -24,8 +25,12 @@ public class IPHelper {
 		return result;
 	}
 	
-	public static int toInt(String str) throws UnknownHostException {
-		return toInt(InetAddress.getByName(str));
+	public static int toInt(String str) {
+		int[] bs = Arrays.stream(str.split("\\.")).mapToInt(s -> Integer.parseInt(s)).toArray();
+		int a = 0;
+		for (int i = 0; i < bs.length; i++) a += (bs[i] & 0xff) << (8*(3-i));
+		return a;
+		
 	}
 	
 	public static String toString(int ip) {

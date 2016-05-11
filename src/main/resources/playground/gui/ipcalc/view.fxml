@@ -6,15 +6,13 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" 
-prefHeight="305.0" prefWidth="536.0" vgap="5.0" 
-xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.65" 
-fx:controller="playground.gui.ipcalc.Controller">
+<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="305.0" prefWidth="536.0" vgap="5.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="playground.gui.ipcalc.Controller">
   <columnConstraints>
     <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" prefWidth="10.0" />
-      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="25.0" />
+      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
@@ -32,5 +30,8 @@ fx:controller="playground.gui.ipcalc.Controller">
       <TextField fx:id="fieldIPBinary" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" />
       <Label text="/" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <Label text="Integer" GridPane.rowIndex="2" />
+      <TextField fx:id="fieldIPInt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <TextField GridPane.columnIndex="3" GridPane.rowIndex="2" />
    </children>
 </GridPane>
