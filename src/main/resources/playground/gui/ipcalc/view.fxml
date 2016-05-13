@@ -6,32 +6,57 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="305.0" prefWidth="536.0" vgap="5.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="playground.gui.ipcalc.Controller">
+<GridPane hgap="5.0" maxHeight="450.0" maxWidth="520.0" minHeight="450.0" minWidth="520.0" prefHeight="450.0" prefWidth="520.0" vgap="5.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="playground.gui.ipcalc.Controller">
   <columnConstraints>
-    <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" prefWidth="10.0" />
-      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="25.0" />
-      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="150.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="250.0" />
+      <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="26.0" minWidth="0.0" prefWidth="10.0" />
+      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" />
+      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="25.0" minWidth="25.0" prefWidth="25.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
     <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
     <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
       <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <Label text="IP Address" />
-      <Label text="Binary format" GridPane.rowIndex="1" />
-      <TextField fx:id="fieldIPReadable" GridPane.columnIndex="1" />
+      <Label text="IP Binary" GridPane.rowIndex="1" />
+      <TextField fx:id="fieldIPReadable" promptText="192.168.0.1" GridPane.columnIndex="1" />
       <Label text="/" GridPane.columnIndex="2" />
-      <TextField GridPane.columnIndex="3" />
+      <TextField fx:id="fieldNetmaskInt" promptText="24" GridPane.columnIndex="3" />
       <TextField fx:id="fieldIPBinary" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" />
-      <Label text="/" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-      <Label text="Integer" GridPane.rowIndex="2" />
+      <Label text="IP Integer" GridPane.rowIndex="2" />
       <TextField fx:id="fieldIPInt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <TextField GridPane.columnIndex="3" GridPane.rowIndex="2" />
+      <Label text="Netmask" GridPane.rowIndex="3" />
+      <Label text="Netmask Binary" GridPane.rowIndex="4" />
+      <Label text="Network" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+      <Label text="Host min" GridPane.rowIndex="7" />
+      <Label text="Host min Binary" GridPane.rowIndex="8" />
+      <Label text="Host max" GridPane.rowIndex="10" />
+      <Label text="Host max Binary" GridPane.rowIndex="11" />
+      <Label text="Hosts" GridPane.rowIndex="5" />
+      <Label fx:id="lblHosts" text="1" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <Label fx:id="lblHostMin" text="0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <Label fx:id="lblHostMinBin" text="0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <Label fx:id="lblHostMax" text="0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+      <Label fx:id="lblHostMaxBin" text="0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+      <Label text="Host min Integer" GridPane.rowIndex="9" />
+      <Label text="Host max Integer" GridPane.rowIndex="12" />
+      <Label fx:id="lblHostMinInt" text="0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+      <Label fx:id="lblHostMaxInt" text="0" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+      <Label fx:id="lblNetmask" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Label fx:id="lblNetmaskBin" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
    </children>
 </GridPane>

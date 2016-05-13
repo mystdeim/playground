@@ -27,6 +27,10 @@ public class UserSettings {
 		return get(name, String.class, null);
 	}
 	
+	public String get(String name, String default_str) {		
+		return get(name, String.class, default_str);
+	}
+	
 	public <T> T get(String name, Class<T> resultTypeClass) {		
 		return get(name, resultTypeClass, null);
 	}

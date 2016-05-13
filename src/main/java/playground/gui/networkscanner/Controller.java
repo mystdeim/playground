@@ -30,11 +30,6 @@ import javafx.scene.control.Label;
 
 public class Controller implements Initializable, UserSettingsSavable {
 	
-	// UserSettings
-	// -----------------------------------------------------------------------------------------------------------------
-	
-	public static final String USER_SETTINGS_NETWORK = "network";
-	
 	public static final String TEXT_READY = "Ready";
 	public static final String TEXT_START = "Start";
 	public static final String TEXT_STOP = "Stop";
@@ -155,8 +150,10 @@ public class Controller implements Initializable, UserSettingsSavable {
 		new Thread(r).start();
 	}
 	
-	// Settings
+	// UserSettings
 	// -----------------------------------------------------------------------------------------------------------------
+	
+	public static final String USER_SETTINGS_NETWORK = "network";
 	
 	private void loadSettings() {
 		UserSettings settings = getUserSettings();

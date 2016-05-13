@@ -65,4 +65,18 @@ public class IPHelperTest {
 				IPHelper.getRange("0.0.0.0/32"), 
 				new int[] {IPHelper.toInt("0.0.0.0"), IPHelper.toInt("0.0.0.0")});
 	}	
+	
+	@Test
+	public void maskToIntTest() {
+		// 11111111 11111111 11111111 11111111
+		assertEquals(-1, IPHelper.maskToInt(32));
+		// 11111111 11111111 11111111 00000000
+		assertEquals(-256, IPHelper.maskToInt(24));
+		// 11111111 11111111 00000000 00000000
+		assertEquals(-65_536, IPHelper.maskToInt(16));
+		// 11111111 00000000 00000000 00000000
+		assertEquals(-16_777_216, IPHelper.maskToInt(8));
+		// 00000000 00000000 00000000 00000000
+		assertEquals(0, IPHelper.maskToInt(0));
+	}
 }

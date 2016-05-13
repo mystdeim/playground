@@ -40,9 +40,9 @@ public class IPCalcMain extends Application {
 //	        });
 	        
 	        stage.setScene(scene);
-	        stage.setTitle("v0.1");
+	        stage.setTitle("IP Calc");
 	        stage.setOnCloseRequest(e -> {
-//	        	controller.saveSettings();
+	        	controller.saveSettings();
 	        });
 	//        stage.getIcons().add(new Image(Main.class.getResourceAsStream("icon.png"))); 
 	        stage.show();

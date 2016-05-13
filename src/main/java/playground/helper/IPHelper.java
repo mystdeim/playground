@@ -127,4 +127,12 @@ public class IPHelper {
 			throw new IllegalArgumentException(e.getMessage());
 		}
 	}
+	
+	public static int maskToInt(int mask) {
+		if (mask < 0 && mask > 32) throw new IllegalArgumentException("Should be in range [0, 32]");
+		if (0 == mask) return 0;
+		int reverse_mask = 32 - mask;
+		int result = -1 << reverse_mask;
+		return result;
+	}
 }
