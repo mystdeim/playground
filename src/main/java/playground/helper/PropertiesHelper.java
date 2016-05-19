@@ -43,8 +43,10 @@ public class PropertiesHelper {
 		if (null != value) {
 			Properties props = readProps(file_name);
 			if (null == props) props = new Properties();
-			if (null != value && value.getClass().isArray()) {
+			if (value.getClass().isArray()) {
 				props.put(name, Arrays.toString((Object[]) value));
+			} if (value instanceof String) {
+				props.put(name, ((String) value).trim());
 			} else {
 				props.put(name, value.toString());
 			}

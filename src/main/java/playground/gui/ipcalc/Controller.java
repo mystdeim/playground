@@ -158,7 +158,7 @@ public class Controller implements Initializable, UserSettingsSavable {
 	@Override
 	public void saveSettings() {
 		UserSettings settings = getUserSettings();
-		settings.put(USER_SETTINGS_ADDRESS, fieldIPReadable.getText().trim());
-		settings.put(USER_SETTINGS_NETWORK, fieldNetmaskInt.getText().trim());
+		settings.put(USER_SETTINGS_ADDRESS, fieldIPReadable.getText());
+		settings.put(USER_SETTINGS_NETWORK, fieldNetmaskInt.getText());
 	}
 }

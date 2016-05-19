@@ -163,7 +163,7 @@ public class Controller implements Initializable, UserSettingsSavable {
 	@Override
 	public void saveSettings() {
 		UserSettings settings = getUserSettings();
-		settings.put(USER_SETTINGS_NETWORK, fieldNetwork.getText().trim());
+		settings.put(USER_SETTINGS_NETWORK, fieldNetwork.getText());
 	}
 	
 	// Row

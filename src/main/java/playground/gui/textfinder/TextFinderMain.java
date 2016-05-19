@@ -1,4 +1,4 @@
-package playground.gui.networkscanner;
+package playground.gui.textfinder;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class NetworkscannerMain extends Application {
+public class TextFinderMain extends Application {
 	
 	public static void main(String... args) { 
 		launch(args);
@@ -22,7 +22,7 @@ public class NetworkscannerMain extends Application {
 	        
 //	        final Scene scene = new Scene(root, 500, 500);
 	        final Scene scene = new Scene(root);
-	        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+//	        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 //	        scene.getStylesheets().addAll(Main.class.getResource("application.css").toExternalForm());
 //	        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 //	            @Override

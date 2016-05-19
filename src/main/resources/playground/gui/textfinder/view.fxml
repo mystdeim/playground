@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.* ?>
+<?import javafx.scene.layout.* ?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0" prefWidth="732.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="playground.gui.textfinder.Controller">
+   
+   <fx:define>
+     <ToggleGroup fx:id="groupRadioFind" />
+     <ToggleGroup fx:id="groupRadioFilter" />
+   </fx:define>
+   
+   <center>
+      <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <items>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <center>
+                  <TreeTableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <columns>
+                      <TreeTableColumn minWidth="-Infinity" prefWidth="50.0" text="File" />
+                      <TreeTableColumn prefWidth="75.0" text="Count" />
+                    </columns>
+                  </TreeTableView>
+               </center>
+               <bottom>
+                  <HBox prefHeight="25.0" prefWidth="296.0" BorderPane.alignment="CENTER" />
+               </bottom>
+            </BorderPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <bottom>
+                  <HBox prefHeight="22.0" prefWidth="309.0" spacing="5.0" BorderPane.alignment="CENTER">
+                     <padding>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </padding>
+                     <children>
+                        <TextField />
+                        <Button mnemonicParsing="false" text="&lt;" />
+                        <Button mnemonicParsing="false" text="&gt;" />
+                     </children>
+                  </HBox>
+               </bottom>
+               <center>
+                  <TextArea prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+        </items>
+      </SplitPane>
+   </center>
+   <top>
+      <GridPane hgap="5.0" vgap="5.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints halignment="RIGHT" hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+            <ColumnConstraints hgrow="NEVER" maxWidth="206.0" minWidth="10.0" prefWidth="200.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="NEVER" maxWidth="94.0" minWidth="10.0" prefWidth="61.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints vgrow="SOMETIMES" />
+          <RowConstraints vgrow="SOMETIMES" />
+          <RowConstraints vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Find what:" />
+            <Label text="Directory:" GridPane.rowIndex="1" />
+            <Label text="Filter:" GridPane.rowIndex="2" />
+            <TextField fx:id="fieldFind" GridPane.columnIndex="1" />
+            <TextField fx:id="fieldFilter" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <HBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <TextField fx:id="fieldDir" HBox.hgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" text="..." />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="2">
+               <children>
+                  <RadioButton fx:id="radioFindExtended" mnemonicParsing="false" text="wildcard"
+                  	toggleGroup="$groupRadioFind" />
+                  <RadioButton fx:id="radioFindRegexp" mnemonicParsing="false" text="regexp"
+                    toggleGroup="$groupRadioFind" />
+               </children>
+            </HBox>
+            <Button mnemonicParsing="false" text="Find all" GridPane.columnIndex="3" />
+            <HBox alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <children>
+                  <RadioButton fx:id="radioFilterWildcard" mnemonicParsing="false" text="wildcard"
+                    toggleGroup="$groupRadioFilter" />
+                  <RadioButton fx:id="radioFilterRegexp" mnemonicParsing="false" text="regexp" 
+                    toggleGroup="$groupRadioFilter" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </GridPane>
+   </top>
+</BorderPane>
