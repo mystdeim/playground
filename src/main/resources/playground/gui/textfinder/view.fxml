@@ -16,10 +16,11 @@
         <items>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                <center>
-                  <TreeTableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <TreeTableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER"
+                  	fx:id="treeTableFiles" >
                     <columns>
-                      <TreeTableColumn minWidth="-Infinity" prefWidth="50.0" text="File" />
-                      <TreeTableColumn prefWidth="75.0" text="Count" />
+                      <TreeTableColumn fx:id="columnName" prefWidth="50.0" text="Name" />
+                      <TreeTableColumn fx:id="columnCount" prefWidth="75.0" text="Count" />
                     </columns>
                   </TreeTableView>
                </center>
@@ -80,7 +81,7 @@
                     toggleGroup="$groupRadioFind" />
                </children>
             </HBox>
-            <Button mnemonicParsing="false" text="Find all" GridPane.columnIndex="3" />
+            <Button mnemonicParsing="false" text="Find all" GridPane.columnIndex="3" onAction="#onStart" />
             <HBox alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <children>
                   <RadioButton fx:id="radioFilterWildcard" mnemonicParsing="false" text="wildcard"
