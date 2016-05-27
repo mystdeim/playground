@@ -37,7 +37,7 @@ public class TextFinder {
 			files.parallel().forEach(path -> {
 //				System.out.println(path);
 				fireScanning(path);
-				if (path.getFileName().toString().matches(filter)) {
+				if (path.getFileName().toString().matches(filter) && Files.isRegularFile(path)) {
 					fireAccepted(path);
 					try (Stream<String> lines = Files.lines(path)) {
 //						lines.forEach(System.out::println);
@@ -48,6 +48,7 @@ public class TextFinder {
 //						long matches = lines.filter(line -> line.contains(pattern)).count();
 						if (matches > 0) fireMatches(path, matches);
 					} catch (Exception e) {
+//						System.out.printf(" - %s \n", path);
 						e.printStackTrace();
 					}
 				}

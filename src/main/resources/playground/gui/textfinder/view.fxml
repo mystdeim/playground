@@ -19,7 +19,7 @@
                   <TreeTableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER"
                   	fx:id="treeTableFiles" >
                     <columns>
-                      <TreeTableColumn fx:id="columnName" prefWidth="50.0" text="Name" />
+                      <TreeTableColumn fx:id="columnName" prefWidth="250.0" text="Name" />
                       <TreeTableColumn fx:id="columnCount" prefWidth="75.0" text="Count" />
                     </columns>
                   </TreeTableView>
@@ -42,7 +42,7 @@
                   </HBox>
                </bottom>
                <center>
-                  <TextArea prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                  <TextArea fx:id="textAreaViewer" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
         </items>
